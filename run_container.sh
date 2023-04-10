@@ -1,0 +1,1 @@
+docker run --name terumo-model-dummy-classifier --rm -p5000:5000 terumo-model-dummy-classifier 
