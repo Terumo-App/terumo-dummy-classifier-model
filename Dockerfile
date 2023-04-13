@@ -9,5 +9,6 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY /api/ /app/
+COPY /artifacts/ /app/artifacts/
 
 CMD ["python", "app.py"]

@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile,HTTPException, Response
+from fastapi.middleware.cors import CORSMiddleware
 import json
 from model.base_model import Model
 from schema.schemas import HealthCheckResult
@@ -18,6 +19,13 @@ class ImagePayload(BaseModel):
 logging.getLogger().setLevel(logging.INFO)
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 model = Model()
 
 def convert_base64_to_image(image: str)->Image.Image:
