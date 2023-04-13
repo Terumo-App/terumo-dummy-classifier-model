@@ -1,1 +1,1 @@
-# terumo-dummy-classifier-model
+# terumo-dummy-classifier-mode
