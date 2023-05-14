@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+*.pth.tar
 # Distribution / packaging
 .Python
 build/

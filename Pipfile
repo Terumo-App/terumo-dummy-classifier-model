@@ -11,6 +11,10 @@ pydantic = "*"
 pillow = "*"
 tensorflow = "*"
 numpy = "*"
+torch = "*"
+torchvision = "*"
+torchaudio = "*"
+efficientnet-pytorch = "*"
 
 [dev-packages]
 pytest = "*"

@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile,HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 import json
-from model.base_model import Model
+from base_model import Model
 from schema.schemas import HealthCheckResult
 from PIL import Image
 import io
