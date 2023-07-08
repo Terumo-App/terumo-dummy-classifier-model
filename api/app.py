@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile,HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 import json
-from model.base_model import Model
+from base_model import Model
 from schema.schemas import HealthCheckResult
 from PIL import Image
 import io
@@ -26,7 +26,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = Model()
+MODELS = [Model('HIPER')]
+MODELS_NAME = ['Hiperceluraridade']
 
 def convert_base64_to_image(image: str)->Image.Image:
     """ this function decodes base64 image data to binary and afeter that convert it
@@ -51,9 +52,14 @@ async def process_image(body: ImagePayload):
         raise HTTPException(status_code=400, detail="No image data provided")  
     
     image = convert_base64_to_image(body.image['data'])
-    image = model.process(image) 
-    predictions = model.predict(image) 
-    print(predictions)
+    
+    predictions = []
+    for model, name in zip(MODELS, MODELS_NAME):
+        image_processed = model.process(image) 
+        prediction = model.predict(image_processed) 
+        predictions.append({ 'model_name': name,'pred':prediction,})
+
+    # print(predictions)
 
     return predictions
 
