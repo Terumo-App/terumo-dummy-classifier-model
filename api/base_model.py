@@ -6,15 +6,19 @@ from process.transformation import get_transform
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-HIPER = 'artifacts/hiper_others_2023-05-12-18-06-48/4_fold_max_acc_checkpoint.pth.tar'
-MEMBR = 'artifacts/membran_others_2023-05-12-20-31-18/0_fold_max_acc_checkpoint.pth.tar'
-NORM = 'artifacts/normal_others_2023-05-12-15-45-47/4_fold_max_acc_checkpoint.pth.tar'
-SCLER = 'artifacts/sclero_others_2023-05-12-13-27-54/4_fold_max_acc_checkpoint.pth.tar'
+
+
+WEIGHTS = {
+    'HIPER' : 'artifacts/hiper_others_2023-05-12-18-06-48/4_fold_max_acc_checkpoint.pth.tar',
+    'MEMBR' : 'artifacts/membran_others_2023-05-12-20-31-18/0_fold_max_acc_checkpoint.pth.tar',
+    'NORM' : 'artifacts/normal_others_2023-05-12-15-45-47/4_fold_max_acc_checkpoint.pth.tar',
+    'SCLER' : 'artifacts/sclero_others_2023-05-12-13-27-54/4_fold_max_acc_checkpoint.pth.tar',
+}
 
 class Model:
-    def __init__(self) -> None:
+    def __init__(self, model_type) -> None:
         self._model = None
-        self._weights_path = HIPER
+        self._weights_path = WEIGHTS[model_type]
         self._transform = get_transform()
         self._load_model()
         self._load_model_weights()
